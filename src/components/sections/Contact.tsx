@@ -43,10 +43,10 @@ export function Contact() {
         body: JSON.stringify({ name, email, phone, college, branch, domain, message }),
       });
 
-      const result = await response.json();
+      const result = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        throw new Error(result.error || "Failed to submit form.");
+        throw new Error(result.error || result.message || `Failed to submit form (Status: ${response.status}).`);
       }
 
       setSubmitted(true);
