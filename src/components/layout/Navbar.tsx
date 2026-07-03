@@ -3,16 +3,14 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Sparkles, LogOut } from "lucide-react";
+import { Menu, X, Sparkles } from "lucide-react";
 import { navLinks } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { supabase } from "@/lib/supabaseClient";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [user, setUser] = useState<any>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -26,26 +24,6 @@ export function Navbar() {
       document.body.style.overflow = "";
     };
   }, [mobileOpen]);
-
-  useEffect(() => {
-    // Check initial session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setUser(session?.user ?? null);
-    });
-
-    // Listen for auth state changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setUser(session?.user ?? null);
-    });
-
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, []);
-
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
-  };
 
   return (
     <header
@@ -79,32 +57,9 @@ export function Navbar() {
         </div>
 
         <div className="hidden items-center gap-3 lg:flex">
-          {user ? (
-            <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent text-xs font-bold text-white shadow-md shadow-primary/20">
-                {user.email?.[0].toUpperCase()}
-              </div>
-              <span className="text-sm font-medium text-muted hidden xl:inline-block max-w-[120px] truncate">
-                {user.email}
-              </span>
-              <Button variant="outline" size="sm" onClick={handleSignOut} className="gap-1.5">
-                <LogOut className="h-3.5 w-3.5" />
-                Sign Out
-              </Button>
-            </div>
-          ) : (
-            <>
-              <Button variant="ghost" size="sm" asChild>
-                <Link href="/auth?mode=login">Login</Link>
-              </Button>
-              <Button variant="outline" size="sm" asChild>
-                <Link href="/auth?mode=register">Register</Link>
-              </Button>
-              <Button size="sm" asChild>
-                <Link href="#contact">Apply Now</Link>
-              </Button>
-            </>
-          )}
+          <Button size="sm" asChild>
+            <Link href="#contact">Apply Now</Link>
+          </Button>
         </div>
 
         <button
@@ -138,40 +93,11 @@ export function Navbar() {
                 </Link>
               ))}
               <div className="flex flex-col gap-2 pt-4">
-                {user ? (
-                  <>
-                    <div className="flex items-center gap-3 px-4 py-2 border-b border-border-subtle mb-2">
-                      <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-accent text-xs font-bold text-white shadow-md">
-                        {user.email?.[0].toUpperCase()}
-                      </div>
-                      <span className="text-sm font-medium text-foreground truncate">
-                        {user.email}
-                      </span>
-                    </div>
-                    <Button variant="outline" onClick={() => { handleSignOut(); setMobileOpen(false); }} className="gap-1.5 justify-center">
-                      <LogOut className="h-4 w-4" />
-                      Sign Out
-                    </Button>
-                  </>
-                ) : (
-                  <>
-                    <Button variant="outline" asChild>
-                      <Link href="/auth?mode=login" onClick={() => setMobileOpen(false)}>
-                        Login
-                      </Link>
-                    </Button>
-                    <Button variant="outline" asChild>
-                      <Link href="/auth?mode=register" onClick={() => setMobileOpen(false)}>
-                        Register
-                      </Link>
-                    </Button>
-                    <Button asChild>
-                      <Link href="#contact" onClick={() => setMobileOpen(false)}>
-                        Apply Now
-                      </Link>
-                    </Button>
-                  </>
-                )}
+                <Button asChild>
+                  <Link href="#contact" onClick={() => setMobileOpen(false)}>
+                    Apply Now
+                  </Link>
+                </Button>
               </div>
             </div>
           </motion.div>
