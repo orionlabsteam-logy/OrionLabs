@@ -13,9 +13,10 @@ interface OrbitProps {
   speed: number;
   reverse?: boolean;
   items: { icon: any; label: string }[];
+  startAngle?: number;
 }
 
-function Orbit({ radius, speed, reverse = false, items }: OrbitProps) {
+function Orbit({ radius, speed, reverse = false, items, startAngle = 0 }: OrbitProps) {
   return (
     <motion.div
       style={{ width: radius * 2, height: radius * 2 }}
@@ -24,7 +25,7 @@ function Orbit({ radius, speed, reverse = false, items }: OrbitProps) {
       className="absolute rounded-full border border-slate-200/20 flex items-center justify-center pointer-events-none"
     >
       {items.map((item, idx) => {
-        const angle = (idx * 360) / items.length;
+        const angle = (idx * 360) / items.length + startAngle;
         const radian = (angle * Math.PI) / 180;
         const x = radius * Math.cos(radian);
         const y = radius * Math.sin(radian);
@@ -146,7 +147,7 @@ export default function Hero() {
             className="lg:col-span-6 relative flex items-center justify-center h-[420px] sm:h-[480px] scale-[0.7] xs:scale-[0.8] sm:scale-[0.9] lg:scale-100 transition-transform duration-500"
           >
             {/* Center OrionLabs Logo Core */}
-            <div className="relative w-28 sm:w-32 h-14 sm:h-16 rounded-2xl border border-slate-200/50 flex items-center justify-center bg-white shadow-xl z-20 p-2.5">
+            <div className="relative w-36 sm:w-44 h-16 sm:h-20 rounded-2xl border border-slate-200/50 flex items-center justify-center bg-white shadow-xl z-20 p-3">
               <img 
                 src="/orionlabs-logo-center.png" 
                 alt="OrionLabs Logo" 
@@ -157,13 +158,13 @@ export default function Hero() {
             {mounted && (
               <>
                 {/* Inner Orbiting Domain texts (AI, ML, DS) */}
-                <Orbit radius={95} speed={30} items={innerOrbit} />
+                <Orbit radius={95} speed={30} startAngle={0} items={innerOrbit} />
 
                 {/* Middle Orbiting Domain texts (Web, App, Cloud) */}
-                <Orbit radius={150} speed={30} items={middleOrbit} />
+                <Orbit radius={150} speed={30} startAngle={40} items={middleOrbit} />
 
                 {/* Outer Orbiting Domain texts (Security, UI/UX, DevOps) */}
-                <Orbit radius={205} speed={30} items={outerOrbit} />
+                <Orbit radius={205} speed={30} startAngle={80} items={outerOrbit} />
               </>
             )}
 
