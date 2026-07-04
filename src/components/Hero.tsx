@@ -129,14 +129,16 @@ export default function Hero() {
 
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <a
-                href="mailto:admissions@orionlabs.io?subject=Internship Application - OrionLabs"
+                href="https://docs.google.com/forms/d/e/1FAIpQLSfnZ3OAdaZQqBxKtTZ0_cdDOkJhMIHnICGLvHxUsHP9BXfx-A/viewform?usp=dialog"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-gradient px-8 py-4 rounded-full text-base font-bold text-white text-center flex items-center justify-center gap-2 group shadow-lg cursor-pointer"
               >
                 Apply for Internship
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
               <Link
-                href="#programs"
+                href="#domains"
                 className="px-8 py-4 rounded-full text-base font-bold text-slate-700 text-center border border-slate-200 hover:bg-slate-50 transition-all backdrop-blur-sm shadow-sm"
               >
                 Explore Programs

@@ -196,7 +196,9 @@ export default function Domains() {
                     <span className="truncate">Mentor: <strong className="text-slate-800 font-semibold">{domain.mentor}</strong></span>
                   </div>
                   <a 
-                    href={`mailto:admissions@orionlabs.io?subject=Application for ${domain.name} Internship`}
+                    href="https://docs.google.com/forms/d/e/1FAIpQLSfnZ3OAdaZQqBxKtTZ0_cdDOkJhMIHnICGLvHxUsHP9BXfx-A/viewform?usp=dialog"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="inline-flex items-center justify-center gap-2 w-full px-5 py-3 rounded-full bg-slate-50 border border-slate-200 hover:bg-slate-100 hover:border-slate-350 text-xs font-bold text-slate-700 transition-all group-hover:bg-gradient-to-r group-hover:from-primary group-hover:to-secondary group-hover:border-transparent group-hover:text-white shadow-sm"
                   >
                     Apply Now
