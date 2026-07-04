@@ -41,12 +41,12 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between">
-          {/* Logo */}
-          <Link href="#home" className="flex items-center space-x-2 group">
-            <span className="font-heading text-2xl font-bold tracking-tight text-slate-900">
-              Orion<span className="text-secondary">Labs</span>
-            </span>
-            <span className="h-2 w-2 rounded-full bg-secondary animate-pulse" />
+          <Link href="#home" className="flex items-center group">
+            <img 
+              src="/orionlabs-logo-center.png" 
+              alt="OrionLabs Logo" 
+              className="h-8 w-auto object-contain"
+            />
           </Link>
 
           <nav className="hidden lg:flex items-center space-x-8">
