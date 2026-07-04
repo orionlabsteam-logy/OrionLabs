@@ -44,14 +44,25 @@ export default function Footer() {
           <div className="lg:col-span-2 flex flex-col space-y-4">
             <h4 className="font-heading text-sm font-bold text-slate-900 uppercase tracking-wider">Quick Links</h4>
             <ul className="space-y-2.5">
-              {["Home", "About", "Certificate", "Programs", "Why Us", "FAQ"].map((item) => (
+              {["Home", "About", "Certificate", "Programs", "Why Us", "FAQ", "Contact Us"].map((item) => (
                 <li key={item}>
-                  <Link 
-                    href={item === "Programs" ? "#domains" : `#${item.toLowerCase().replace(" ", "")}`} 
-                    className="text-slate-650 hover:text-slate-900 text-sm transition-colors"
-                  >
-                    {item}
-                  </Link>
+                  {item === "Contact Us" ? (
+                    <a 
+                      href="https://docs.google.com/forms/d/e/1FAIpQLScM0Q4jit9W4wXo9v0MBLvXbDA7UOSiTIS4AgxDBbciqdSdIA/viewform?usp=publish-editor" 
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-slate-650 hover:text-slate-900 text-sm transition-colors"
+                    >
+                      {item}
+                    </a>
+                  ) : (
+                    <Link 
+                      href={item === "Programs" ? "#domains" : `#${item.toLowerCase().replace(" ", "")}`} 
+                      className="text-slate-650 hover:text-slate-900 text-sm transition-colors"
+                    >
+                      {item}
+                    </Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -94,6 +105,14 @@ export default function Footer() {
           <div className="flex gap-6">
             <a href="#" className="hover:text-slate-900 transition-colors">Privacy Policy</a>
             <a href="#" className="hover:text-slate-900 transition-colors">Terms of Service</a>
+            <a 
+              href="https://docs.google.com/forms/d/e/1FAIpQLScM0Q4jit9W4wXo9v0MBLvXbDA7UOSiTIS4AgxDBbciqdSdIA/viewform?usp=publish-editor" 
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-slate-900 transition-colors font-semibold text-slate-650"
+            >
+              Contact Us
+            </a>
           </div>
         </div>
 
