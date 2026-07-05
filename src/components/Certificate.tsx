@@ -120,7 +120,7 @@ export default function Certificate() {
                   <img 
                     src="/orionlabs-logo-center.png" 
                     alt="OrionLabs Logo" 
-                    className="h-7 sm:h-9 w-auto object-contain pl-2"
+                    className="h-10 sm:h-14 w-auto object-contain pl-2"
                   />
                 </div>
 
