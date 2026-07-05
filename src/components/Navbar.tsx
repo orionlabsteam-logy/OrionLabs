@@ -45,7 +45,7 @@ export default function Navbar() {
             <img 
               src="/orionlabs-logo-center.png" 
               alt="OrionLabs Logo" 
-              className="h-12 sm:h-14 w-auto object-contain"
+              className="h-16 sm:h-20 w-auto object-contain"
             />
           </Link>
 
